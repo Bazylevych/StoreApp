@@ -6,9 +6,19 @@
  */
 
 import React from 'react';
-import {StatusBar, StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import products from './src/data/products';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,14 +28,18 @@ function App(): JSX.Element {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-      }}>
-      <Text style={styles.text}>Hello World</Text>
+    <View style={styles.container}>
+      <SafeAreaView>
+        <FlatList
+          data={products}
+          renderItem={({item}) => (
+            <View style={styles.itemContainer}>
+              <Image source={{uri: item.image}} style={styles.image} />
+            </View>
+          )}
+          numColumns={2}
+        />
+      </SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -35,8 +49,19 @@ function App(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: 'center',
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  image: {
+    width: '100%',
+    aspectRatio: 1,
+  },
+  itemContainer: {
+    width: '50%',
+    padding: 1,
   },
 });
 
