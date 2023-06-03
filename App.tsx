@@ -1,24 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StatusBar, StyleSheet, useColorScheme, View} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import products from './src/data/products';
+import ProductsScreen from './src/screens/ProductsScreen';
+import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,17 +14,8 @@ function App(): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <FlatList
-          data={products}
-          renderItem={({item}) => (
-            <View style={styles.itemContainer}>
-              <Image source={{uri: item.image}} style={styles.image} />
-            </View>
-          )}
-          numColumns={2}
-        />
-      </SafeAreaView>
+      {/* <ProductsScreen /> */}
+      <ProductDetailsScreen />
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -51,8 +27,8 @@ function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     backgroundColor: '#fff',
   },
   image: {
